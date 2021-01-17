@@ -1,7 +1,57 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse
-# from .models import 
+from .models import Profile, Post
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from .forms import SignUpForm, NewPostForm, UserUpdateForm, ProfileUpdateForm
+from django.contrib.auth.models import User
 
 
+@login_required(login_url='/accounts/login/')
 def index(request):
-    return render(request, 'index.html')
+    posts = Post.all_posts()
+    json_posts = []
+    for post in posts:
+
+        pic = Profile.objects.filter(user=post.user.id).first()
+        if pic:
+            pic = pic.profile_pic.url
+        else:
+            pic =''
+        obj = dict(
+            image=post.image.url,
+            author=post.user.username,
+            avatar=pic,
+            name=post.title,
+            caption=post.caption
+
+        )
+        json_posts.append(obj)
+    return render(request, 'index.html', {"posts": json_posts})
+
+
+def profile(request):
+    if request.method == 'POST':
+
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(
+            request.POST, request.FILES, instance=request.user)
+
+        if  profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+
+            return redirect('index')
+
+    else:
+        
+        profile_form = ProfileUpdateForm(instance=request.user)
+        user_form = UserUpdateForm(instance=request.user)
+
+        context = {
+            'user_form':user_form,
+            'profile_form': profile_form
+
+        }
+
+    return render(request, 'profile.html', context)
