@@ -14,24 +14,20 @@
             <p> Password or username is incorrect </p>
             {% endif %}
 
-
-
-            <div class="card" style="width: 20rem; margin-top:70px;">
+            <div class="card" style=" padding:30px; width: 350px; height: 460px; margin-top:70px; border:1px solid gray">
 
                 <div class="card-body">
-                    <h3 class="text-center" style="font-family: 'Lobster Two', cursive;">Instagram </h3>
+                    <h3 class="text-center" style="font-size:40px; font-family:  'Lobster Two', cursive;">Instagram </h3>
                 </div>
-                <div class="container">
 
-                    <form action="/accounts/login/" method="post">
+                    <form style="width: 250px;" action="/accounts/login/" method="post">
                         {% csrf_token %}
                         {% bootstrap_form form%}
 
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-sm" value="Login">
+                            <input style= " width: 250px;" type="submit" class="btn btn-primary btn-sm" value="Login">
 
                         </div>
-                </div>
 
                 <hr>
                 <p class="container">you dont have an account? <a href="/accounts/register"> Sign Up</a></p>
