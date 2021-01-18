@@ -2,10 +2,11 @@ from django.conf.urls import url
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from instagram import views as user_views
 
 urlpatterns=[
     url(r'^$', views.index, name='index'),
-
+    url(r'^profile/', views.profile, name='profile')
 ]
  
 if settings.DEBUG:
