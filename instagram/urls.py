@@ -6,7 +6,10 @@ from instagram import views as user_views
 
 urlpatterns=[
     url(r'^$', views.index, name='index'),
-    url(r'^profile/', views.profile, name='profile')
+    url(r'^profile/', user_views.profile, name='profile'),
+    url(r'^update_profile/', user_views.update_profile,name = 'update_profile'),
+    url(r'^accounts/register/', views.register, name='register'),
+    url(r'^new_post/', views.new_post,name ='new_post'),
 ]
  
 if settings.DEBUG:
