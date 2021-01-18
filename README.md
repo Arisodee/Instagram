@@ -13,12 +13,6 @@ This web application allows users to sign up, upload their pictures, view pictur
 | Click on log Out in the accounts | Redirects to the login form | user is logged out |
 
 
-## Features
-- User can view images 
-- User can see all images per location they were taken
-- User can also search for images based categories
-- Admin can upload images from the django dashboard
-
 ### Link to Live Site 
 - [Instagram](https://ariso-insta.herokuapp.com/)
 
