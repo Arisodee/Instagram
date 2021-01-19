@@ -10,6 +10,7 @@ urlpatterns=[
     url(r'^update_profile/', user_views.update_profile,name = 'update_profile'),
     url(r'^accounts/register/', views.register, name='register'),
     url(r'^new_post/', views.new_post,name ='new_post'),
+    
 ]
  
 if settings.DEBUG:
